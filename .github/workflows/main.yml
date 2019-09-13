@@ -21,7 +21,7 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         release_title: 'Terrapin release'
         release_note: 'Terrapin release for commit ${{ github.sha }}'
-        asset_filepath: $(pwd)/outputfolder/${PACKAGE_NAME}-${PACKAGE_VERSION}.tgz
+        asset_filepath: $(pwd)/outputfolder/${{ PACKAGE_NAME }}-${{ PACKAGE_VERSION }}.tgz
         tag_name: v0.1.GITHUB_SHORT_SHA
       env:
         package_name: "http-proxy-agent"
