@@ -9,9 +9,9 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: list output folder
-      run:  mkdir /home/outputfolder
+      run:  mkdir $(pwd)/outputfolder
     - name: Build the Docker image
-      run:  docker run --volume $(pwd):/repo --volume /home/outputfolder:/output 'mcr.microsoft.com/oryx/build:latest' /bin/bash -c "oryx build -package /repo --output /output"
+      run:  docker run --volume $(pwd):/repo --volume $(pwd)/outputfolder:/output 'mcr.microsoft.com/oryx/build:latest' /bin/bash -c "oryx build -package /repo --output /output"
     - name: list output folder
       run:  ls /home/outputfolder
     - uses: jikuma/githubaction@v0.3.3-alpha
@@ -21,6 +21,6 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         release_title: 'Terrapin release'
         release_note: 'Terrapin release for commit ${{ github.sha }}'
-        asset_filepath: '/home/outputfolder/http-proxy-agent-2.1.0.tgz'
+        asset_filepath: '$(pwd)/outputfolder/http-proxy-agent-2.1.0.tgz'
         tag_name: v0.1.GITHUB_SHORT_SHA
         
