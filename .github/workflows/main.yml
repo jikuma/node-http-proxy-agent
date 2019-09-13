@@ -13,7 +13,7 @@ jobs:
     - name: Build the Docker image
       run:  docker run --volume $(pwd):/repo --volume $(pwd)/outputfolder:/output 'mcr.microsoft.com/oryx/build:latest' /bin/bash -c "oryx build -package /repo --output /output"
     - name: list output folder
-      run:  ls /home/outputfolder
+      run:  ls $(pwd)/outputfolder
     - uses: jikuma/githubaction@v0.3.3-alpha
       name: 'Create a release'
       with:
